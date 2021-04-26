@@ -1,0 +1,8 @@
+{
+    "Alt-/": "lua:comment.comment",
+    "\u001b[3^": "DeleteWordRight",
+    "\u001b[1b": "DeleteWordLeft",
+    "\u001b[1;5D": "WordLeft",
+    "\u001b[1;5C": "WordRight",
+    "CtrlUnderscore": "lua:comment.comment",
+}

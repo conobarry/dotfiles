@@ -1,0 +1,43 @@
+{
+    "editor.minimap.enabled": false,
+    "editor.insertSpaces": true,
+    "editor.tabSize": 4,
+    "workbench.colorTheme": "Default Light+",
+    "workbench.colorCustomizations": {
+        "[Default Light+]": {
+            "editor.background": "#f5efec",
+            "editorGroupHeader.tabsBackground": "#EDE7E3",
+            "tab.inactiveBackground": "#EDE7E3",
+            "panel.background": "#f5efec",
+            "menu.foreground": "#ff0000",
+            "sideBar.background": "#EDE7E3",
+        }
+    },
+    "[lua]": {
+        "editor.tabSize": 2
+    },
+    "explorer.confirmDragAndDrop": false,
+    "explorer.confirmDelete": false,
+    "Lua.workspace.library": {
+        "/usr/share/awesome": true
+    },
+    "Lua.workspace.maxPreload": 1000,
+    "[html]": {
+        "editor.defaultFormatter": "vscode.html-language-features"
+    },
+    "window.menuBarVisibility": "compact",
+    "outline.showProperties": false,
+    "outline.showStrings": false,
+    "outline.showStructs": false,
+    "outline.showConstants": false,
+    "outline.showVariables": false,
+    "outline.showArrays": false,
+    "outline.showBooleans": false,
+    "outline.showFunctions": false,
+    "outline.showNull": false,
+    "outline.showNumbers": false,
+    "outline.showObjects": false,
+    "outline.showOperators": false,
+    "outline.showFields": false,
+    "editor.semanticHighlighting.enabled": true
+}

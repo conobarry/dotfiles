@@ -1,0 +1,56 @@
+! run 'xmodmap ~/.Xmodmap' to reload mapping
+! run 'setxkbmap -model pc105 -layout gb -variant extd' to reset mapping
+! run 'xmodmap -pm' to see modifier mappings
+
+! keycode [keycode] = 1 2 3 4 5 6
+!   1. [key]
+!   2. Shift + [key]
+!   3. Mode_switch + [key]
+!   4. Mode_switch + Shift + [key]
+!   5. AltGraph + [key]
+!   6. AltGraph + Shift + [key]
+
+! Before changing mappings, 'xmodmap -pke' and 
+!   make sure to copy the existing mapping
+
+! Set caps lock to Super_L, shift + caps to caps lock
+!clear lock
+!clear mod4
+!keycode 66 = Super_L Caps_Lock Super_L
+!add mod4 = Super_L
+
+!clear mod2
+!keysym Num_Lock = Scroll_Lock
+!keycode 78 = Num_Lock
+!add mod2 = Num_Lock
+!keycode 77 = BackSpace BackSpace Num_Lock
+!remove mod2 = BackSpace
+
+
+!! Set Mode_switch + hjkl to vim-like arrow keys
+!keysym h = h H Left Left hstroke Hstroke hstroke
+!keysym j = j J Down Down dead_hook dead_horn dead_hook
+!keysym k = k K Up Up kra ampersand kra
+!keysym l = l L Right Right lstroke Lstroke lstroke
+!
+
+!
+!!! Set right control to Super_L
+!! Remove control from mod map
+!remove control = Control_R
+!! Set right control to be Super_L
+!keycode 105 = Super_L
+!! 
+!add mod4 = Super_L
+!
+!! Set Scroll lock to num lock
+!!keycode 78 = Num_Lock
+!
+!! Set Num lock to backspace
+!!keycode 77 = BackSpace BackSpace BackSpace BackSpace
+!
+!!remove mod4 = Super_L
+!!remove mod4 = Super_R
+!
+!!add mod3 = Super_L
+

@@ -1,0 +1,8 @@
+.tabbrowser-tab[fadein]:not([pinned]) {
+    min-width: 40px !important;
+    max-width: 250px !important;
+}
+
+.tab-close-button {
+    display: none;
+}

@@ -1,0 +1,44 @@
+[global_config]
+  dbus = False
+  focus = mouse
+  title_hide_sizetext = True
+  title_transmit_bg_color = "#fcaf3e"
+[keybindings]
+[profiles]
+  [[default]]
+    background_color = "#eeeeec"
+    cursor_shape = underline
+    cursor_color = "#aaaaaa"
+    foreground_color = "#2e3436"
+    show_titlebar = False
+    scroll_on_output = True
+  [[New Profile]]
+    cursor_color = "#aaaaaa"
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = default
+  [[New Layout]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      position = 10:246
+      maximised = False
+      fullscreen = False
+      size = 1342, 710
+      title = conor@apollo:~
+      last_active_term = 73e62573-ad67-4974-a68b-4e8dcd0e9dc9
+      last_active_window = True
+    [[[terminal1]]]
+      type = Terminal
+      parent = child0
+      order = 0
+      profile = default
+      uuid = 73e62573-ad67-4974-a68b-4e8dcd0e9dc9
+[plugins]

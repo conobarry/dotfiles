@@ -1,0 +1,2 @@
+"\C-H":backward-kill-word
+"\e[3;5~":kill-word

@@ -1,0 +1,5 @@
+"\C-h": backward-kill-word
+"\e[3^": kill-word
+"\e[1;5D": backward-word
+"\e[1;5C": forward-word
+"\e[1b": backward-kill-word

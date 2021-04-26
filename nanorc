@@ -1,0 +1,12 @@
+
+include /usr/share/nano/*.nanorc
+include /usr/share/nano/extra/*.nanorc
+
+set tabsize 4
+set tabstospaces
+set mouse
+set afterends
+set autoindent
+set indicator
+set linenumbers
+set smarthome
