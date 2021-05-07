@@ -95,7 +95,7 @@ local rules = {
     },
     properties = { 
       floating = false,
-      titlebars_enabled = false
+      --titlebars_enabled = false
     }
   },
 
