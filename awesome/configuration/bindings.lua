@@ -92,6 +92,12 @@ bindings.keyboard = {
     awful.key({ modkey, "Control" }, "q",   awesome.quit, 
       {description = "quit awesome", group = "awesome"}
     ),
+    awful.key({ modkey, "Control" }, "d",
+      function()
+        print("changing theme")
+        beautiful.init(gears.filesystem.get_configuration_dir() .. "themes/compact/theme_dark.lua")
+      end
+    ),
 
     -- System
     awful.key( { } , "XF86AudioRaiseVolume",
