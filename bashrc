@@ -29,6 +29,12 @@ export PATH='/home/conor/.luarocks/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/
 alias ls='ls -a --color=auto'
 alias py='python3'
 
+page_man() {
+    man "$1" | w3m
+}
+
+alias man=page_man
+
 
 ########## Prompts ###########
 
