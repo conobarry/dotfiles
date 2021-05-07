@@ -11,7 +11,7 @@ local inspect = require("lua_modules.inspect")
 local function titlebar(client)
 
   local titlebar_widget = awful.titlebar(client, {
-    size = beautiful.dpi(20)
+    size = beautiful.dpi(14)
   })
 
   -- Define titlebar buttons
@@ -37,8 +37,8 @@ local function titlebar(client)
   -- Setup titlebar widget
   titlebar_widget:setup {
     widget = wibox.container.margin,
-    bottom = beautiful.border_width,
-    color = beautiful.border_normal,
+    -- bottom = beautiful.border_width,
+    -- color = beautiful.border_normal,
     {
       layout = wibox.layout.align.horizontal,
       {
