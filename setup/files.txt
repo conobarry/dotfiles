@@ -33,6 +33,5 @@ ranger: ~/.config/ranger
 redshift: ~/.config/redshift
 terminator: ~/.config/terminator
 Thunar/uca.xml: ~/.config/Thunar/uca.xml
-vlc: ~/.config/vlc
 firefox/userChrome.css: ~/.mozilla/firefox/1vjsr560.default-release/chrome/userChrome.css
 firefox/userContent.css: ~/.mozilla/firefox/1vjsr560.default-release/chrome/userContent.css
