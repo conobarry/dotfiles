@@ -52,9 +52,15 @@ xbindkeys &
 . ~/.config/redshift/redshift.sh enable 0 1
 #redshift -c ~/.config/redshift/redshift.conf &
 
+# Music server
 mopidy &
 
+# Mount google drive
+rclone mount gdrive: ~/usr/cloud/ --vfs-cache-mode full &
+
+# Start window manager
 exec awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr
+
 #exec bspwm
 #exec i3
 #exec startplasma-x11
