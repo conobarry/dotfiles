@@ -2,11 +2,11 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 
-local command = 'bash -c "sensors | grep \'CPU Temp\' | awk \'{print substr($3, 2, length($3)-5)}\'"'
+local command = 'bash -c "sensors \'k10temp-*\' | awk \'/cpu/ {print substr($2, 2, length($2)-5)}\'"'
 
 local cpu_temp = awful.widget.watch(command, 2,
   function(widget, stdout)
-    widget.markup = string.format("<span font='%s' foreground='%s'>%3d</span>", beautiful.bar.font, beautiful.bar.fg_white, stdout)
+    widget.markup = string.format("<span font='%s' foreground='%s'>%2d°C</span>", beautiful.bar.font, beautiful.bar.fg_white, stdout)
   end
 )
 

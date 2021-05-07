@@ -61,7 +61,7 @@ local watcher = awful.widget.watch(watch_command, 1,
       end
     end
     --widget:add_value(widget[1].usage)
-    widget.markup = string.format("<span font='%s' foreground='%s'>%2.0f%%</span>",
+    widget.markup = string.format("<span font='%s' foreground='%s'>%3.0f%%</span>",
       beautiful.bar.font, beautiful.bar.fg_white, widget[1].usage)
   end--,
   --progress_bar

@@ -13,7 +13,7 @@ local watcher = awful.widget.watch(watch_command, 2,
 
     local usage = ( used / total ) * 100
 
-    widget.markup = string.format("<span font='%s' foreground='%s'>%2.0f%%</span>", beautiful.bar.font, beautiful.bar.fg_white or beautiful.fg_normal, usage)
+    widget.markup = string.format("<span font='%s' foreground='%s'>%3.0f%%</span>", beautiful.bar.font, beautiful.bar.fg_white or beautiful.fg_normal, usage)
   end
 )
 

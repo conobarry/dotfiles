@@ -6,7 +6,7 @@ local command = [[bash -c "nvidia-smi --query-gpu=utilization.gpu --format=csv,n
 
 local gpu_usage = awful.widget.watch(command, 2,
   function(widget, stdout)
-    widget.markup = string.format("<span font='%s' foreground='%s'>%2d%%</span>", beautiful.bar.font, beautiful.bar.fg_white, stdout)
+    widget.markup = string.format("<span font='%s' foreground='%s'>%3d%%</span>", beautiful.bar.font, beautiful.bar.fg_white, stdout)
   end
 )
 
