@@ -26,7 +26,6 @@ local vpn = require("bar_widgets.vpn.vpn")
 -- local redshift = require("widgets.redshift")
 local window_title = require("bar_widgets.window_title")
 
-
 local SPACING = 8
 
 -- Sets wallpaper for a given screen
@@ -194,7 +193,7 @@ awful.screen.connect_for_each_screen(
             -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             spacing = beautiful.bar.spacing,
-            date,
+            -- date,
             launcher_container,
             user,
             systray,
