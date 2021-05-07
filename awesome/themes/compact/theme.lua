@@ -47,6 +47,7 @@ local colors = {
   dark_green = "#23856d", -- dark green
   light_green = "#6cbda8",
   off_black  = "#002b36", -- off-black (dark blue)
+  gray = "#777777"
 }
 
 theme.rainbow_colors = {
@@ -89,10 +90,10 @@ theme.fg_normal = colors.off_black
 --theme.fg_minimize = "#ffffff"
 
 theme.useless_gap = dpi(4)
-theme.border_width = dpi(1)
-theme.border_normal = colors.black
-theme.border_focus = colors.black--"#535d6c"
-theme.border_marked = colors.black --"#91231c"
+theme.border_width = dpi(2)
+theme.border_normal = colors.gray
+theme.border_focus = colors.gray--"#535d6c"
+theme.border_marked = colors.gray --"#91231c"
 
 -- There are other variable sets
 -- overriding the default one when
@@ -137,8 +138,13 @@ theme.taglist_squares_sel = theme_assets.taglist_squares_sel(taglist_square_size
 theme.taglist_squares_unsel = theme_assets.taglist_squares_unsel(taglist_square_size, theme.fg_normal)
 theme.taglist_font = theme.bar.font
 
-theme.titlebar_bg_normal = theme.off_white
-theme.titlebar_bg_focus = theme.off_white
+theme.titlebar_bg_normal = colors.off_white
+theme.titlebar_bg_focus = colors.off_white
+
+theme.titlebar = {
+  bg_normal = colors.off_white,
+  bg_focus = colors.off_white
+}
 
 -- Variables set for theming notifications:
 -- notification_font
@@ -174,8 +180,8 @@ theme.menu_width = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.titlebar_close_button_normal = to_icon_path("window-close")
-theme.titlebar_close_button_focus  = to_icon_path("window-close")
+theme.titlebar_close_button_normal = to_icon_path("archlinux-dark")
+theme.titlebar_close_button_focus  = to_icon_path("archlinux-dark")
 
 theme.titlebar_minimize_button_normal = to_icon_path("window-minimize")
 theme.titlebar_minimize_button_focus  = to_icon_path("window-minimize")
