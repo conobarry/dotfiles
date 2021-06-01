@@ -24,8 +24,8 @@ Properties:
       https://awesomewm.org/doc/api/classes/client.html
 
   Some useful definitons are:
-    class     - the second string of the result of "xprop WM_CLASS"
     instance  - the first string of the result of "xprop WM_CLASS"
+    class     - the second string of the result of "xprop WM_CLASS"
     name      - The text in the titlebar, the result of "xprop WM_NAME"
     role      - unknown
 
@@ -58,7 +58,10 @@ local rules = {
       buttons = bindings.mouse.client,
       screen = awful.screen.preferred,
       placement = awful.placement.no_overlap + awful.placement.no_offscreen + awful.placement.centered,
-      floating = true, -- All clients are now floating by default
+      floating = true, -- All clients are now floating by default,
+      maximized_vertical = false,
+      maximized_horizontal = false,
+      maximized = false,
     }
   },
 
@@ -78,14 +81,17 @@ local rules = {
     rule_any = {
       instance = {
         "chromium",
-        "code-oss",
+        "code-oss", -- Open source vscode
+        "code", -- MS vscode
         "urxvt",
         "discord",
         "spotify",
         "Steam",
         "libreoffice",
         "atom",
-        "vlc"
+        "vlc",
+        -- "Godot_Engine",
+        "Godot_Editor"
       },
       class = {
         "firefox",
@@ -188,6 +194,7 @@ local rules = {
       floating = true
     } 
   },
+
   -- Make urxvt take up all the space it's given
   {
     rule_any = {
