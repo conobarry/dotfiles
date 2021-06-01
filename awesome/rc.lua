@@ -171,6 +171,14 @@ client.connect_signal(
   end
 )
 
+client.connect_signal(
+  "property::maximized",
+  function(c)
+    c.maximized = false
+  end
+)
+
+
 -- client.connect_signal("manage",
 --   function(c, startup)
 --     c.shape = function(cr, w, h)
