@@ -9,7 +9,6 @@
             "editorGroupHeader.tabsBackground": "#EDE7E3",
             "tab.inactiveBackground": "#EDE7E3",
             "panel.background": "#f5efec",
-            "menu.foreground": "#ff0000",
             "sideBar.background": "#EDE7E3",
         }
     },
@@ -25,7 +24,6 @@
     "[html]": {
         "editor.defaultFormatter": "vscode.html-language-features"
     },
-    "window.menuBarVisibility": "compact",
     // "outline.showProperties": false,
     // "outline.showStrings": false,
     // "outline.showStructs": false,
@@ -39,5 +37,22 @@
     // "outline.showObjects": false,
     // "outline.showOperators": false,
     // "outline.showFields": false,
-    "editor.semanticHighlighting.enabled": true
+    "editor.semanticHighlighting.enabled": true,
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex.server.autoDownload": true,
+    "latex-workshop.chktex.enabled": true,
+    "explorer.openEditors.sortOrder": "alphabetical",
+    "latex-workshop.message.warning.show": false,
+    "latex-workshop.latex.outDir": "%DIR%/out",
+    "Lua.telemetry.enable": false,
+    "window.enableMenuBarMnemonics": false,
+    "window.customMenuBarAltFocus": false,
+    "window.menuBarVisibility": "hidden",
+    "workbench.editorAssociations": [
+        {
+            "viewType": "jupyter.notebook.ipynb",
+            "filenamePattern": "*.ipynb"
+        }
+    ],
+    "editor.trimAutoWhitespace": false
 }
