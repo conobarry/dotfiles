@@ -62,7 +62,8 @@ local launcher_container = wibarutils.make_shape(
   wibarutils.right_top_trapezium,
   wibox.widget {
     widget = wibox.container.margin,
-    margins = beautiful.dpi(2),
+    top = beautiful.dpi(2),
+    bottom = beautiful.dpi(2),
     {
       widget = launcher
     }
@@ -74,12 +75,17 @@ local user = wibox.widget {
   widget = wibox.widget.textbox,
 }
 
-awful.spawn.easy_async_with_shell('echo "$(whoami)@$(hostname)"', function(stdout)
+awful.spawn.easy_async_with_shell('echo "$(whoami)@$(cat /etc/hostname)"', function(stdout)
   user.markup = string.format("<span font='%s' foreground='%s'>%s</span>", beautiful.bar.font, "#000", stdout)
 end)
 
 -- Keyboard map indicator and switcher
 local keyboardlayout = awful.widget.keyboardlayout()
+
+-- local num_screens = screen:count()
+-- local tag_table = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
+-- local table_length = 10
+
 
 awful.screen.connect_for_each_screen(
   function(s)    
@@ -103,12 +109,14 @@ awful.screen.connect_for_each_screen(
     )
 
     -- Each screen has its own tag table.
-    if (s.index == 1) then      
+    -- if (s.index == 1) then      
       awful.tag({"1", "2", "3", "4", "5"}, s, awful.layout.layouts[1])
 
-    elseif (s.index == 2) then
-      awful.tag({"6", "7", "8", "9", "0"}, s, awful.layout.layouts[1])
-    end
+    -- elseif (s.index == 2) then
+      -- awful.tag({"6", "7", "8", "9", "0"}, s, awful.layout.layouts[1])
+      -- awful.tag({"1", "2", "3", "4", "5"}, s, awful.layout.layouts[1])
+
+    -- end
 
     -- Create a taglist widget
     s.taglist = taglist(s)
