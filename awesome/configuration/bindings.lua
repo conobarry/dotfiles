@@ -217,6 +217,17 @@ bindings.keyboard = {
       end,
       {description = "open a terminal", group = "launch"}
     ),
+    awful.key({ modkey, "Shift" }, "Return",
+      function()
+        local c = awful.spawn("urxvt", {
+          floating = true,
+          placement = awful.placement.centered,
+          -- width = dpi(1000),
+          -- height = dpi(600),
+        })
+      end,
+      {description = "quick terminal", group = "launch"} 
+    ),
     awful.key({ modkey }, "r",
       --function() awful.screen.focused().mypromptbox:run() end,
       function() 
@@ -245,17 +256,6 @@ bindings.keyboard = {
     awful.key({ modkey }, "space",
       function() awful.spawn("rofi -show run") end,
       {description = "run rofi", group = "launch"}
-    ),
-    awful.key({ modkey, "Shift" }, "Return",
-      function()
-        local c = awful.spawn("urxvt", {
-          floating = true,
-          width = dpi(500),
-          height = dpi(200),
-          placement = awful.placement.centered
-        })
-      end,
-      {description = "quick terminal", group = "launch"} 
     ),
     awful.key({ modkey }, "e",
       function() awful.spawn(global.file_manager) end,
