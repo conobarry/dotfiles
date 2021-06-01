@@ -26,7 +26,7 @@ export PATH='/home/conor/.luarocks/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/
 
 
 ########## Aliases ##########
-alias ls='ls -a --color=auto'
+alias ls='ls -Ap --group-directories-first --color=auto'
 alias py='python3'
 
 page_man() {
@@ -55,7 +55,9 @@ FG_MGREEN="$(tput setaf 28)"
 
 RESET="$(tput sgr0)"
 
-if [[ $TERM != linux ]]; then
+if [[ $TERM == "rxvt-unicode-256color" ]]; then
     #export PS1="\[\033[38;5;15m\]\033[48;5;22m\] \u@\h \033[38;5;22m\]\033[48;5;28m\]\033[38;5;15m\] \W \033[38;5;28m\]\033[48;5;34m\]\033[38;5;15m\] \$ \033[38;5;34m\]\033[48;5;15m\]\[$(tput sgr0)\] \]"
     export PS1=$'\[${FG_WHITE}\]\[${BG_GREEN}\] \u@\h \[${FG_GREEN}\]\[${BG_MGREEN}\]\uE0B0\[${FG_WHITE}\] \W \[${FG_MGREEN}\]\[${BG_LGREEN}\]\uE0B0\[${FG_WHITE}\] \$ \[${FG_LGREEN}\]\[${BG_WHITE}\]\uE0B0\[${RESET}\] '
+elif [[ $TERM != "linux" ]]; then
+    export PS1=$'\[${FG_WHITE}\]\[${BG_GREEN}\][\u@\h \W]\$\[${RESET}\] '
 fi
