@@ -15,7 +15,7 @@ local function titlebar(client)
   })
 
   -- Define titlebar buttons
-  local close_button = awful.titlebar.widget.closebutton(client)
+  -- local close_button = awful.titlebar.widget.closebutton(client)
   local maximize_button = awful.titlebar.widget.maximizedbutton(client)
   local ontop_button = awful.titlebar.widget.ontopbutton(client)
   local floating_button = awful.titlebar.widget.floatingbutton(client)
@@ -29,6 +29,20 @@ local function titlebar(client)
       {
         widget = wibox.widget.imagebox,
         image = beautiful.titlebar_floating_button_focus_active,
+        visible = true
+      }
+    }
+  }
+
+  local close_button = wibox.widget {
+    widget = wibox.container.background,
+    bg = "#000000"..00,
+    {
+      widget = wibox.container.margin,
+      margins = 1,
+      {
+        widget = wibox.widget.imagebox,
+        image = beautiful.titlebar_close_button_normal,
         visible = true
       }
     }
@@ -88,7 +102,12 @@ local function titlebar(client)
           ontop_button,
         },
         maximize_button,
-        close_button,
+        {
+          widget = wibox.container.margin,
+          margins = 2,
+          close_button,
+        }
+        
       }
     }
   }
@@ -145,6 +164,11 @@ local function titlebar(client)
       if (button == 1) then
         client:kill()
       end
+    end
+  )
+
+  close_button:connect_signal("mouse::enter",
+    function()
     end
   )
 
