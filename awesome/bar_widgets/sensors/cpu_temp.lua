@@ -2,7 +2,7 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 
-local command = 'bash -c "sensors \'k10temp-*\' | awk \'/cpu/ {print substr($2, 2, length($2)-5)}\'"'
+local command = 'bash -c "sensors \'zenpower-*\' | awk \'/CPU_Tdie/ {print substr($2, 2, length($2)-5)}\'"'
 
 local cpu_temp = awful.widget.watch(command, 2,
   function(widget, stdout)
