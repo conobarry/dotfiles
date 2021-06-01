@@ -11,7 +11,7 @@ local shape = require("gears.shape")
 local theme_path = gfs.get_configuration_dir() .. "themes/default/"
 
 local function to_icon_path(filename)
-  return "/home/conor/convert/svgs/" .. filename .. ".png"
+  return "/home/conor/usr/pictures/icons/svgs/dark/" .. filename .. ".png"
 end
 
 local theme = {
@@ -108,7 +108,7 @@ theme.border_marked = colors.gray --"#91231c"
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
 
-theme.launcher_icon = to_icon_path("archlinux-dark")
+theme.launcher_icon = to_icon_path("archlinux")
 
 theme.bar = {
   bg_normal = colors.off_white,
@@ -180,8 +180,8 @@ theme.menu_width = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.titlebar_close_button_normal = to_icon_path("archlinux-dark")
-theme.titlebar_close_button_focus  = to_icon_path("archlinux-dark")
+theme.titlebar_close_button_normal = to_icon_path("window-close-better")
+theme.titlebar_close_button_focus  = to_icon_path("window-close-better")
 
 theme.titlebar_minimize_button_normal = to_icon_path("window-minimize")
 theme.titlebar_minimize_button_focus  = to_icon_path("window-minimize")

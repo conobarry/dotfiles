@@ -12,7 +12,7 @@ function run {
 run ~/.config/xbindkeys/reload.sh # reload xbindkeys
 run xmodmap ~/.Xmodmap # reload xmodmap
 run picom -b -c # run compositor
-run feh --bg-tile ~/usr/pictures/tiles/my-tiles/my-solaris-aghh.png # set wallpaper
+run feh --bg-tile ~/usr/pictures/wallpapers/solaris.png # set wallpaper
 
 run discord
 #run python3 .local/bin/beautifuldiscord --css ~/.config/beautifuldiscord/discord-custom.css
