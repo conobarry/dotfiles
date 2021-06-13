@@ -1,10 +1,14 @@
 awesome: ~/.config/awesome
-bash_history: ~/.bash_history
-bash_logout: ~/.bash_logout
-bash_profile: ~/.bash_profile
-bashrc: ~/.bashrc
+bash/bash_logout: ~/.bash_logout
+bash/bash_profile: ~/.bash_profile
+bash/bashrc: ~/.bashrc
+bash/bash_prompt.py: ~/.bash/bash_prompt.py
+bash/bashrc_prompt.sh: ~/.bash/bashrc_prompt.sh
+bash/rgb-lighten-test.py: ~/.bash/rgb-lighten-test.py
 beautifuldiscord: ~/.config/beautifuldiscord
 gitconfig: ~/.gitconfig
+godot/script_templates/: ~/.config/godot/script_templates/
+godot/text_editor_themes/: ~/.config/godot/text_editor_themes/
 gtk-2.0: ~/.config/gtk-2.0
 gtk-3.0: ~/.config/gtk-3.0
 gtkrc-2.0: ~/.gtkrc-2.0
@@ -17,7 +21,9 @@ micro/settings.json: ~/.config/micro/settings.json
 mopidy: ~/.config/mopidy [secrets hidden]
 nanorc: ~/.nanorc
 nvidia-settings-rc: ~/.nvidia-settings-rc
-vscode/settings.json: ~/.config/Code\ -\ OSS/User/settings.json
+kitty/: ~/.config/kitty
+vscode/settings.json: ~/.config/Code/User/settings.json
+vscode/keybindings.json: ~/.config/Code/User/keybindings.json
 xbindkeysrc: ~/.xbindkeysrc
 xinitrc: ~/.xinitrc
 xinputrc: ~/.xinputrc
