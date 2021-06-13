@@ -231,7 +231,7 @@ bindings.keyboard = {
     awful.key({ modkey }, "r",
       --function() awful.screen.focused().mypromptbox:run() end,
       function() 
-        -- prompt_popup:toggle() 
+        -- prompt_popup:toggle()
       end,
       {description = "run prompt", group = "launch"}
     ),
@@ -427,17 +427,14 @@ for i = 1, 9 do
     -- View tag only.
     awful.key({ modkey }, "#" .. i + 9,
       function()
-        -- local screen = awful.screen.focused()
-        -- local tag = screen.tags[i]
-        -- if tag then
-        --   tag:view_only()
-        -- end
-        for s in _G.screen do
-          local tag = awful.tag.find_by_name(s, tostring(i))
+        local screen = awful.screen.focused()
+        
+        -- for s in _G.screen do
+          local tag = awful.tag.find_by_name(screen, tostring(i))
           if tag then
             tag:view_only()
           end
-        end
+        -- end
       end,
       {description = "view tag #" .. i, group = "tag"}
     ),
