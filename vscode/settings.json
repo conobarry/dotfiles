@@ -54,5 +54,9 @@
             "filenamePattern": "*.ipynb"
         }
     ],
-    "editor.trimAutoWhitespace": false
+    "editor.trimAutoWhitespace": false,
+    "workbench.editor.enablePreviewFromCodeNavigation": true,
+    "debug.openDebug": "neverOpen",
+    "window.restoreWindows": "none",
+    "terminal.integrated.fontFamily": "RobotoMono Nerd Font"
 }
