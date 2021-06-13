@@ -2,7 +2,7 @@
 
 local global = {
   -- This is used later as the default terminal and editor to run.
-  terminal = "urxvt",
+  terminal = "kitty",
   browser = "firefox",
   file_manager = "thunar",
   editor = os.getenv("EDITOR") or "nano",
