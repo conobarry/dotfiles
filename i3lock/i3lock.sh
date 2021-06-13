@@ -50,17 +50,17 @@ i3lock \
 --pass-screen-keys \
 --pass-power-keys \
 --pass-volume-keys \
---timestr="%H:%M" \
---datestr="%a %-e %b %Y" \
+--time-str="%H:%M" \
+--date-str="%a %-e %b %Y" \
 --keylayout 1 \
---locktext="Locking..." \
---wrongtext="Incorrect" \
---veriftext="Verifying" \
---noinputtext="No input" \
---lockfailedtext="Lock failed" \
+--lock-text="Locking..." \
+--wrong-text="Incorrect" \
+--verif-text="Verifying" \
+--noinput-text="No input" \
+--lockfailed-text="Lock failed" \
 --radius=100 \
 --ring-width=20 \
---timepos="ix:iy-14" \
+--time-pos="ix:iy-14" \
 \
 --time-font="Roboto Mono" \
 --date-font="Roboto Mono" \
@@ -68,20 +68,20 @@ i3lock \
 --verif-font="Roboto Mono" \
 --wrong-font="Roboto Mono" \
 \
---insidevercolor=$base2$alpha \
---insidewrongcolor=$base2$alpha \
---insidecolor=$base2$alpha \
---ringvercolor=$green$alpha \
---ringwrongcolor=$red$alpha \
---ringvercolor=$green$alpha \
---ringwrongcolor=$red$alpha \
---ringcolor=$blue$alpha \
+--insidever-color=$base2$alpha \
+--insidewrong-color=$base2$alpha \
+--inside-color=$base2$alpha \
+--ringver-color=$green$alpha \
+--ringwrong-color=$red$alpha \
+--ringver-color=$green$alpha \
+--ringwrong-color=$red$alpha \
+--ring-color=$blue$alpha \
 --line-uses-ring \
---keyhlcolor=$magenta$alpha \
---bshlcolor=$orange$alpha \
---separatorcolor=$base1$alpha \
---verifcolor=$green \
---wrongcolor=$red \
---layoutcolor=$blue \
---datecolor=$blue \
---timecolor=$blue \
+--keyhl-color=$magenta$alpha \
+--bshl-color=$orange$alpha \
+--separator-color=$base1$alpha \
+--verif-color=$green \
+--wrong-color=$red \
+--layout-color=$blue \
+--date-color=$blue \
+--time-color=$blue \
