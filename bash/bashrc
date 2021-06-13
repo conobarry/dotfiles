@@ -40,6 +40,6 @@ alias hostname='cat /etc/hostname'
 ########## Prompts ###########
 
 # include .bashrc_prompt if it exists
-[ -f $HOME/.bash/bashrc_prompt.sh ] && . $HOME/.bash/bashrc_prompt.sh
+[ -f ~/.dotfiles/bash/bashrc_prompt.sh ] && . ~/.dotfiles/bash/bashrc_prompt.sh
 
 # eval "$(starship init bash)"

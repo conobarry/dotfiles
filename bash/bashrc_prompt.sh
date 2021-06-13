@@ -37,7 +37,7 @@ if [[ $COLORTERM == "truecolor" ]]; then
     prompt_arr+=("\W") # Current directory
     prompt_arr+=("\\$") # $ or #
     
-    PS1=$(python3 ~/.bash/bash_prompt.py --color 35 133 109 --black 27 25 24 --white 245 239 236 --tint 0.2 --items ${prompt_arr[@]})
+    PS1=$(python3 ~/.dotfiles/bash/bash_prompt.py --color 35 133 109 --black 27 25 24 --white 245 239 236 --tint 0.2 --items ${prompt_arr[@]})
     
 else
     PS1=$'\[${FG_WHITE}\]\[${BG_GREEN}\][\u@\h \W]\$\[${RESET}\] '
