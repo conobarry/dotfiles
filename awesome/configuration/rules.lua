@@ -91,7 +91,8 @@ local rules = {
         "atom",
         "vlc",
         -- "Godot_Engine",
-        "Godot_Editor"
+        "Godot_Editor",
+        "kitty",
       },
       class = {
         "firefox",
