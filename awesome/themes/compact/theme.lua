@@ -76,6 +76,9 @@ theme.rainbow_colors_light = {
   "#82c4e1" -- Sky Blue
 }
 
+-- theme.cursor_mouse_move = "move"
+
+theme.wibar_cursor = "hand"
 theme.font = "sans 9"
 
 theme.bg_normal = colors.light_green
