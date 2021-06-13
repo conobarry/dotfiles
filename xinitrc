@@ -40,6 +40,7 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 #picom -b & # compositor
 #autorandr --change # automatically setup monitors
 
+xrdb ~/.Xresources
 . ~/.config/xbindkeys/reload.sh # reload xbindkeys
 xmodmap ~/.Xmodmap
 
