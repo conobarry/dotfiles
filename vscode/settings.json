@@ -48,15 +48,14 @@
     "window.enableMenuBarMnemonics": false,
     "window.customMenuBarAltFocus": false,
     "window.menuBarVisibility": "hidden",
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter.notebook.ipynb"
+    },
     "editor.trimAutoWhitespace": false,
     "workbench.editor.enablePreviewFromCodeNavigation": true,
     "debug.openDebug": "neverOpen",
     "window.restoreWindows": "none",
-    "terminal.integrated.fontFamily": "RobotoMono Nerd Font"
+    "terminal.integrated.fontFamily": "RobotoMono Nerd Font",
+    "editor.fontSize": 12,
+    "security.workspace.trust.untrustedFiles": "open"
 }

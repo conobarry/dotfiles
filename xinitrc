@@ -40,24 +40,24 @@ export QT_QPA_PLATFORMTHEME="qt5ct"
 #picom -b & # compositor
 #autorandr --change # automatically setup monitors
 
-xrdb ~/.Xresources
-. ~/.config/xbindkeys/reload.sh # reload xbindkeys
-xmodmap ~/.Xmodmap
+#xrdb ~/.Xresources
+#. ~/.config/xbindkeys/reload.sh # reload xbindkeys
+#xmodmap ~/.Xmodmap
 
 #run redshift -c ~/.config/redshift/redshift.conf
-#run picom -b -c # run compositor
+run picom -b -c # run compositor
 
-python3 ~/.screenlayout/autodetect.py
+#python3 ~/.screenlayout/autodetect.py
 
-xbindkeys &
-. ~/.config/redshift/redshift.sh enable 0 1
-#redshift -c ~/.config/redshift/redshift.conf &
+#xbindkeys &
+#. ~/.config/redshift/redshift.sh enable 0 1
+redshift -c ~/.config/redshift/redshift.conf &
 
 # Music server
-mopidy &
+#mopidy &
 
 # Mount google drive
-rclone mount gdrive: ~/usr/cloud/ --vfs-cache-mode full &
+#rclone mount gdrive: ~/usr/cloud/ --vfs-cache-mode full &
 
 # Start window manager
 exec awesome >> ~/.cache/awesome/stdout 2>> ~/.cache/awesome/stderr

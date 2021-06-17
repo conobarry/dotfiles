@@ -219,7 +219,7 @@ bindings.keyboard = {
     ),
     awful.key({ modkey, "Shift" }, "Return",
       function()
-        local c = awful.spawn("urxvt", {
+        local c = awful.spawn("kitty", {
           floating = true,
           placement = awful.placement.centered,
           -- width = dpi(1000),

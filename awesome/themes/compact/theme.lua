@@ -92,7 +92,7 @@ theme.fg_normal = colors.off_black
 --theme.fg_urgent = "#ffffff"
 --theme.fg_minimize = "#ffffff"
 
-theme.useless_gap = dpi(4)
+theme.useless_gap = dpi(2)
 theme.border_width = dpi(2)
 theme.border_normal = colors.gray
 theme.border_focus = colors.gray--"#535d6c"

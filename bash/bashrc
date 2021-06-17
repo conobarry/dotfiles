@@ -17,13 +17,13 @@ source /usr/share/fzf/completion.bash
 
 
 ########## Exports ##########
-export LS_COLORS="$(vivid -m 8-bit generate solarized-dark)"
+#export LS_COLORS="$(vivid -m 8-bit generate solarized-dark)"
 export EDITOR="micro"
 
-export LUA_PATH='/usr/share/lua/5.4/?.lua;/usr/share/lua/5.4/?/init.lua;/usr/lib/lua/5.4/?.lua;/usr/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;/home/conor/.luarocks/share/lua/5.4/?.lua;/home/conor/.luarocks/share/lua/5.4/?/init.lua'
-export LUA_CPATH='/usr/lib/lua/5.4/?.so;/usr/lib/lua/5.4/loadall.so;./?.so;/home/conor/.luarocks/lib/lua/5.4/?.so'
-export PATH='/home/conor/.luarocks/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl'
-export PATH="$PATH:/home/conor/.dotnet/tools"
+#export LUA_PATH='/usr/share/lua/5.4/?.lua;/usr/share/lua/5.4/?/init.lua;/usr/lib/lua/5.4/?.lua;/usr/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;/home/conor/.luarocks/share/lua/5.4/?.lua;/home/conor/.luarocks/share/lua/5.4/?/init.lua'
+#export LUA_CPATH='/usr/lib/lua/5.4/?.so;/usr/lib/lua/5.4/loadall.so;./?.so;/home/conor/.luarocks/lib/lua/5.4/?.so'
+#export PATH='/home/conor/.luarocks/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl'
+#export PATH="$PATH:/home/conor/.dotnet/tools"
 
 ########## Aliases ##########
 alias ls='ls -Ap --group-directories-first --color=auto'
