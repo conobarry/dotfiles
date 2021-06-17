@@ -4,7 +4,8 @@ local awful = require("awful")
 local gears = require("gears")
 
 local bindings = require("configuration.bindings")
-local menu = require("widgets.menus.my_menu")
+-- local menu = require("widgets.menus.my_menu")
+local menu = require("widgets.menus.split_context_menu")
 local global = require("configuration.global")
 local inspect = require("lua_modules.inspect")
 
@@ -112,48 +113,68 @@ local function titlebar(client)
     }
   }
 
-  local titlebar_menu = menu()
-  -- {
-  --   items = {
-  --     { type="header", text=client.name },
-  --     { "maximize",  
-  --       function() 
-  --         client.maximized = true
-  --         client:raise()
-  --       end
-  --     },
-  --     { type="header", text="Applications" },
-  --     { type = "separator" },
-  --     { "close", function() client:kill() end },
+  ----- Old menu stuff -------------------------
+  -- local titlebar_menu = menu()
+
+  -- titlebar_menu:add({ type="header", text=client.class })
+
+  -- local maximize_entry = {}
+
+  -- if client.maximized then
+  --   maximize_entry = {
+  --     text = "minimize"
   --   }
-  -- }
+  -- else
+  --   maximize_entry = {
+  --     text = "maximize"
+  --   }
+  -- end
 
-  titlebar_menu:add({ type="header", text=client.class })
+  -- titlebar_menu:add(maximize_entry)
 
-  local maximize_entry = {}
+  -- titlebar_menu:add({ type="separator" })
+  -- titlebar_menu:add({ text="close", cmd=function() client:kill() end })
 
+  -- titlebar_widget:connect_signal("button::press",
+  --   function(titlebar, _, _, button)
+  --     print(inspect(titlebar, {depth = 1}))
+  --     if (button == 1) then  
+  --       client:emit_signal("request::activate", "titlebar", {raise = true})
+  --       awful.mouse.client.move(client)
+  --     elseif (button == 3) then
+  --       titlebar_menu:toggle()
+  --     end
+  --   end
+  -- )
+  -----------------------------------------
+
+  local maximize_item = {}
+  
   if client.maximized then
-    maximize_entry = {
-      text = "minimize"
-    }
+    maximize_item = { "minimize", function ()
+      client.maximized = false
+    end }
   else
-    maximize_entry = {
-      text = "maximize"
-    }
+    maximize_item = { "maximize", function ()
+      client.maximized = true
+    end }
   end
-
-  titlebar_menu:add(maximize_entry)
-
-  titlebar_menu:add({ type="separator" })
-  titlebar_menu:add({ text="close", cmd=function() client:kill() end })
-
+  
+  local titlebar_menu = menu {
+    items = {
+      { type = "header", text = client.class },
+      maximize_item,
+      { type = "seperator" },
+      { "close", function() client:kill() end }
+    },
+    data = {
+      client = client
+    }
+  }
+  
   titlebar_widget:connect_signal("button::press",
-    function(titlebar, _, _, button)
-      print(inspect(titlebar, {depth = 1}))
-      if (button == 1) then  
-        client:emit_signal("request::activate", "titlebar", {raise = true})
-        awful.mouse.client.move(client)
-      elseif (button == 3) then
+    function(_, _, _, button)
+      if (button == 3) then
         titlebar_menu:toggle()
       end
     end
