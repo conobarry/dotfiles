@@ -58,5 +58,6 @@
     "workbench.editor.enablePreviewFromCodeNavigation": true,
     "debug.openDebug": "neverOpen",
     "window.restoreWindows": "none",
-    "terminal.integrated.fontFamily": "RobotoMono Nerd Font"
+    "terminal.integrated.fontFamily": "RobotoMono Nerd Font",
+    "update.mode": "manual"
 }
