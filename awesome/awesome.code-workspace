@@ -1,0 +1,12 @@
+{
+    "folders": [
+        {
+            "name": "awesome config",
+            "path": "/home/conor/.config/awesome/"
+        },
+        {
+            "name": "awesome lib",
+            "path": "/usr/share/awesome"
+        }
+    ]
+}
