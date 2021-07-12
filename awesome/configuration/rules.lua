@@ -97,7 +97,8 @@ local rules = {
       class = {
         "firefox",
         "libreoffice-writer",
-        "Spotify"
+        "Spotify",
+        "Inkscape",
       }
     },
     properties = { 
@@ -174,21 +175,21 @@ local rules = {
   },
 
   -- Set Discord to always map on the tag named "2" on screen 2.
-  {
-    rule = { class = "discord" },
-    properties = {
-      screen = 2,
-      tag = "7"
-    }
-  },
-  {
-    rule = { instance = "spotify" },
-    properties = {
-      screen = 2,
-      tag = "8",
-      floating = false
-    }
-  },
+  -- {
+  --   rule = { class = "discord" },
+  --   properties = {
+  --     screen = 2,
+  --     tag = "7"
+  --   }
+  -- },
+  -- {
+  --   rule = { instance = "spotify" },
+  --   properties = {
+  --     screen = 2,
+  --     tag = "8",
+  --     floating = false
+  --   }
+  -- },
   {
     rule = { role = "_NET_WM_STATE_FULLSCREEN" },
     properties = {
