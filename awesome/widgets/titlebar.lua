@@ -8,6 +8,8 @@ local menu = require("widgets.menus.my_menu")
 local global = require("configuration.global")
 local inspect = require("lua_modules.inspect")
 
+local titlebar_button = require("widgets.titlebar_button")
+
 local function titlebar(client)
 
   local titlebar_widget = awful.titlebar(client, {
@@ -15,38 +17,87 @@ local function titlebar(client)
   })
 
   -- Define titlebar buttons
-  -- local close_button = awful.titlebar.widget.closebutton(client)
-  local maximize_button = awful.titlebar.widget.maximizedbutton(client)
+  local maximize_button2 = awful.titlebar.widget.button(client, "maximized",
+    function(cl)
+      return cl.maximized
+    end,
+    function(cl, state)
+      cl.maximized = not state
+    end)
+  -- c:connect_signal("property::maximized", widget.update)
+  -- local maximize_sbutton = awful.titlebar.widget.maximizedbutton(client)
   local ontop_button = awful.titlebar.widget.ontopbutton(client)
   local floating_button = awful.titlebar.widget.floatingbutton(client)
   
-  local menu_button = wibox.widget {
-    widget = wibox.container.background,
-    bg = "#000000"..00,
-    {
-      widget = wibox.container.margin,
-      margins = 1,
-      {
-        widget = wibox.widget.imagebox,
-        image = beautiful.titlebar_floating_button_focus_active,
-        visible = true
-      }
-    }
+  
+  local minimize_button = titlebar_button {
+    tooltip = "minimize",
+    bg_normal = beautiful.titlebar.minimize_button.bg_normal,
+    bg_focus = beautiful.titlebar.minimize_button.bg_focus,
+    icon_normal = beautiful.titlebar.minimize_button.icon_normal,
+    icon_focus = beautiful.titlebar.minimize_button.icon_focus,
   }
+  
+  minimize_button:connect_signal("button::press",
+    function(titlebar, _, _, button)
+      if (button == 1) then
+        client.minimized = true
+      end
+    end
+  )
+  
+  local maximize_button = titlebar_button {
+    tooltip = "maximize",
+    bg_normal = beautiful.titlebar.maximize_button.bg_normal,
+    bg_focus = beautiful.titlebar.maximize_button.bg_focus,
+    icon_normal = beautiful.titlebar.maximize_button.icon_normal,
+    icon_focus = beautiful.titlebar.maximize_button.icon_focus,
+  }
+  
+  maximize_button:connect_signal("button::press",
+    function(titlebar, _, _, button)
+      if (button == 1) then
+        client.maximized = true
+      end
+    end
+  )
+  
+  local restore_button = titlebar_button {
+    tooltip = "restore",
+    bg_normal = beautiful.titlebar.restore_button.bg_normal,
+    bg_focus = beautiful.titlebar.restore_button.bg_focus,
+    icon_normal = beautiful.titlebar.restore_button.icon_normal,
+    icon_focus = beautiful.titlebar.restore_button.icon_focus,
+  }
+  
+  local max_restore_button = client.maximized and restore_button or maximize_button
 
-  local close_button = wibox.widget {
-    widget = wibox.container.background,
-    bg = "#000000"..00,
-    {
-      widget = wibox.container.margin,
-      margins = 1,
-      {
-        widget = wibox.widget.imagebox,
-        image = beautiful.titlebar_close_button_normal,
-        visible = true
-      }
-    }
+  
+  restore_button:connect_signal("button::press",
+    function(titlebar, _, _, button)
+      if (button == 1) then
+        client.maximized = false
+      end
+    end
+  )
+  
+  local close_button = titlebar_button {
+    tooltip = "close",
+    bg_normal = beautiful.titlebar.close_button.bg_normal,
+    bg_focus = beautiful.titlebar.close_button.bg_focus,
+    icon_normal = beautiful.titlebar.close_button.icon_normal,
+    icon_focus = beautiful.titlebar.close_button.icon_focus,
   }
+  
+  close_button:connect_signal("button::press",
+    function(titlebar, _, _, button)
+      if (button == 1) then
+        client:kill()
+      end
+    end
+  )
+  
+  
 
   -- Setup titlebar widget
   titlebar_widget:setup {
@@ -60,7 +111,7 @@ local function titlebar(client)
         --awful.titlebar.widget.iconwidget(c),
         --buttons = buttons,
         layout = wibox.layout.fixed.horizontal,
-        menu_button,
+        -- menu_button,
         --buttons = bindings.titlebar_mouse,
       },
       {
@@ -90,24 +141,10 @@ local function titlebar(client)
       {
         -- Right
         layout = wibox.layout.fixed.horizontal(),
-        {
-          widget = wibox.container.margin,
-          margins = 1,
-          floating_button,
-        },
-        --awful.titlebar.widget.stickybutton(c),
-        {
-          widget = wibox.container.margin,
-          margins = 1,
-          ontop_button,
-        },
-        maximize_button,
-        {
-          widget = wibox.container.margin,
-          margins = 2,
-          close_button,
-        }
-        
+        minimize_button,
+        max_restore_button,
+        close_button,
+        -- maximize_button2,
       }
     }
   }
@@ -159,18 +196,18 @@ local function titlebar(client)
     end
   )
 
-  close_button:connect_signal("button::press",
-    function(_, _, _, button)
-      if (button == 1) then
-        client:kill()
-      end
-    end
-  )
+  -- close_button:connect_signal("button::press",
+  --   function(_, _, _, button)
+  --     if (button == 1) then
+  --       client:kill()
+  --     end
+  --   end
+  -- )
 
-  close_button:connect_signal("mouse::enter",
-    function()
-    end
-  )
+  -- close_button:connect_signal("mouse::enter",
+  --   function()
+  --   end
+  -- )
 
   return titlebar_widget
 
