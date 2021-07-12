@@ -142,6 +142,18 @@ bindings.keyboard = {
         media_controller.next_track()
       end
     ),
+    awful.key( { } , "XF86MonBrightnessUp",
+      function ()
+        awful.spawn.easy_async("light -A 5", function ()          
+        end)        
+      end
+    ),
+    awful.key( { } , "XF86MonBrightnessDown",
+      function ()
+        awful.spawn.easy_async("light -U 5", function ()          
+        end)
+      end
+    ),
 
     -- Tag
     -- awful.key({ modkey            }, "Left",    awful.tag.viewprev, 
@@ -192,7 +204,7 @@ bindings.keyboard = {
       {description = "jump to urgent client", group = "client"}
     ),
     awful.key({ modkey }, "Tab",
-      function() awful.spawn("rofi -show window") end,
+      function() awful.spawn("rofi -show-icons -show window") end,
       -- function()
       --   awful.client.focus.history.previous()
       --   if client.focus then
@@ -264,6 +276,10 @@ bindings.keyboard = {
     awful.key({ modkey }, "b",
       function() awful.spawn.with_shell(global.browser) end,
       {description = "web browser", group = "launch"}
+    ),
+    awful.key({ "Control", "Shift" }, "Escape",
+      function() awful.spawn.with_shell("lxtask") end,
+      {description = "task manager", group = "launch"}
     ),
 
     -- Layout    
