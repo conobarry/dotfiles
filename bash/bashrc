@@ -22,12 +22,15 @@ export EDITOR="micro"
 
 #export LUA_PATH='/usr/share/lua/5.4/?.lua;/usr/share/lua/5.4/?/init.lua;/usr/lib/lua/5.4/?.lua;/usr/lib/lua/5.4/?/init.lua;./?.lua;./?/init.lua;/home/conor/.luarocks/share/lua/5.4/?.lua;/home/conor/.luarocks/share/lua/5.4/?/init.lua'
 #export LUA_CPATH='/usr/lib/lua/5.4/?.so;/usr/lib/lua/5.4/loadall.so;./?.so;/home/conor/.luarocks/lib/lua/5.4/?.so'
-#export PATH='/home/conor/.luarocks/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl'
+export PATH="$PATH:/home/conor/.luarocks/bin:/usr/local/sbin:/usr/local/bin:/usr/bin:/usr/lib/jvm/default/bin:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl"
+export PATH="$PATH:/home/conor/.local/bin"
 #export PATH="$PATH:/home/conor/.dotnet/tools"
 
 ########## Aliases ##########
 alias ls='ls -Ap --group-directories-first --color=auto'
 alias py='python3'
+alias pgrep='pgrep -ai'
+alias lua='lua5.3'
 
 page_man() {
     man "$1" | w3m
