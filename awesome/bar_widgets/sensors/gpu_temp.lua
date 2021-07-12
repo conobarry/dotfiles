@@ -2,7 +2,7 @@
 local awful = require("awful")
 local beautiful = require("beautiful")
 
-local command = [[bash -c "nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader,nounits"]]
+local command = 'bash -c "sensors \'radeon-*\' | awk \'/gpu_temp/ {print substr($2, 2, length($2)-5)}\'"'
 
 local gpu_temp = awful.widget.watch(command, 2,
   function(widget, stdout)
