@@ -50,8 +50,8 @@ run picom -b -c # run compositor
 #python3 ~/.screenlayout/autodetect.py
 
 #xbindkeys &
-#. ~/.config/redshift/redshift.sh enable 0 1
-redshift -c ~/.config/redshift/redshift.conf &
+. ~/.config/redshift/redshift.sh enable 0
+# redshift -c ~/.config/redshift/redshift.conf &
 
 # Music server
 #mopidy &
