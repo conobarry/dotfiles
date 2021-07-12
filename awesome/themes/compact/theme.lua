@@ -1,3 +1,4 @@
+local theme = require "themes.default.theme"
 ---------------------------
 -- Default awesome theme --
 ---------------------------
@@ -8,15 +9,29 @@ local dpi = xresources.apply_dpi
 
 local gfs = require("gears.filesystem")
 local shape = require("gears.shape")
-local theme_path = gfs.get_configuration_dir() .. "themes/default/"
+local theme_path = gfs.get_configuration_dir() .. "themes/compact/"
 
-local function to_icon_path(filename)
-  return "/home/conor/usr/pictures/icons/svgs/dark/" .. filename .. ".png"
-end
+-- local theme = {
+--   dpi = dpi,
+  -- icon_path = theme_path .. "icons/dark/"
+-- }
+
+-- local icon_path = theme.icon_path
+
+-- local function to_icon_path(filename)
+  
+-- end
 
 local theme = {
-  dpi = dpi
+  dpi = dpi,
+  -- icon_path = theme_path .. "icons/",
 }
+
+theme.to_icon_path = function (filename)
+  return theme_path .. "icons/light/" .. filename .. ".png"
+end
+
+-- local icon_path = theme.icon_path
 
 -- Colors -----------------------------------------------
 
@@ -111,7 +126,7 @@ theme.border_marked = colors.gray --"#91231c"
 -- Example:
 --theme.taglist_bg_focus = "#ff0000"
 
-theme.launcher_icon = to_icon_path("archlinux")
+theme.launcher_icon = theme.to_icon_path("bar/archlinux")
 
 theme.bar = {
   bg_normal = colors.off_white,
@@ -146,7 +161,35 @@ theme.titlebar_bg_focus = colors.off_white
 
 theme.titlebar = {
   bg_normal = colors.off_white,
-  bg_focus = colors.off_white
+  bg_focus = colors.off_white,
+}
+
+theme.titlebar.minimize_button = {
+  bg_normal = theme.titlebar.bg_normal,
+  bg_focus = theme.rainbow_colors[5],
+  icon_normal = theme.to_icon_path("titlebar/window-minimize"),
+  icon_focus = theme.to_icon_path("titlebar/window-minimize"),
+}
+
+theme.titlebar.maximize_button = {
+  bg_normal = theme.titlebar.bg_normal,
+  bg_focus = theme.rainbow_colors[3],
+  icon_normal = theme.to_icon_path("titlebar/window-maximize"),
+  icon_focus = theme.to_icon_path("titlebar/window-maximize"),
+}
+
+theme.titlebar.restore_button = {
+  bg_normal = theme.titlebar.bg_normal,
+  bg_focus = theme.rainbow_colors[3],
+  icon_normal = theme.to_icon_path("titlebar/window-restore"),
+  icon_focus = theme.to_icon_path("titlebar/window-restore"),
+}
+
+theme.titlebar.close_button = {
+  bg_normal = theme.titlebar.bg_normal,
+  bg_focus = theme.rainbow_colors[1],
+  icon_normal = theme.to_icon_path("titlebar/window-close-better"),
+  icon_focus = theme.to_icon_path("titlebar/window-close-better"),
 }
 
 -- Variables set for theming notifications:
@@ -183,51 +226,51 @@ theme.menu_width = dpi(100)
 --theme.bg_widget = "#cc0000"
 
 -- Define the image to load
-theme.titlebar_close_button_normal = to_icon_path("window-close-better")
-theme.titlebar_close_button_focus  = to_icon_path("window-close-better")
+theme.titlebar_close_button_normal = theme.to_icon_path("titlebar/window-close-better")
+theme.titlebar_close_button_focus  = theme.to_icon_path("titlebar/window-close-better")
 
-theme.titlebar_minimize_button_normal = to_icon_path("window-minimize")
-theme.titlebar_minimize_button_focus  = to_icon_path("window-minimize")
+theme.titlebar_minimize_button_normal = theme.to_icon_path("window-minimize")
+theme.titlebar_minimize_button_focus  = theme.to_icon_path("window-minimize")
 
-theme.titlebar_ontop_button_normal_inactive = to_icon_path("window-pin")
-theme.titlebar_ontop_button_focus_inactive  = to_icon_path("window-pin")
-theme.titlebar_ontop_button_normal_active   = to_icon_path("window-unpin")
-theme.titlebar_ontop_button_focus_active    = to_icon_path("window-unpin")
+theme.titlebar_ontop_button_normal_inactive = theme.to_icon_path("window-pin")
+theme.titlebar_ontop_button_focus_inactive  = theme.to_icon_path("window-pin")
+theme.titlebar_ontop_button_normal_active   = theme.to_icon_path("window-unpin")
+theme.titlebar_ontop_button_focus_active    = theme.to_icon_path("window-unpin")
 
-theme.titlebar_sticky_button_normal_inactive = theme_path .. "titlebar/sticky_normal_inactive.png"
-theme.titlebar_sticky_button_focus_inactive  = theme_path .. "titlebar/sticky_focus_inactive.png"
-theme.titlebar_sticky_button_normal_active   = theme_path .. "titlebar/sticky_normal_active.png"
-theme.titlebar_sticky_button_focus_active    = theme_path .. "titlebar/sticky_focus_active.png"
+-- theme.titlebar_sticky_button_normal_inactive = theme_path .. "titlebar/sticky_normal_inactive.png"
+-- theme.titlebar_sticky_button_focus_inactive  = theme_path .. "titlebar/sticky_focus_inactive.png"
+-- theme.titlebar_sticky_button_normal_active   = theme_path .. "titlebar/sticky_normal_active.png"
+-- theme.titlebar_sticky_button_focus_active    = theme_path .. "titlebar/sticky_focus_active.png"
 
-theme.titlebar_floating_button_normal_inactive = to_icon_path("window-grid")
-theme.titlebar_floating_button_focus_inactive  = to_icon_path("window-grid")
-theme.titlebar_floating_button_normal_active   = to_icon_path("window-floating")
-theme.titlebar_floating_button_focus_active    = to_icon_path("window-floating")
+theme.titlebar_floating_button_normal_inactive = theme.to_icon_path("window-grid")
+theme.titlebar_floating_button_focus_inactive  = theme.to_icon_path("window-grid")
+theme.titlebar_floating_button_normal_active   = theme.to_icon_path("window-floating")
+theme.titlebar_floating_button_focus_active    = theme.to_icon_path("window-floating")
 
-theme.titlebar_maximized_button_normal_inactive = to_icon_path("window-maximize")
-theme.titlebar_maximized_button_focus_inactive  = to_icon_path("window-maximize")
-theme.titlebar_maximized_button_normal_active   = to_icon_path("window-minimize")
-theme.titlebar_maximized_button_focus_active    = to_icon_path("window-minimize")
+theme.titlebar_maximized_button_normal_inactive = theme.to_icon_path("titlebar/window-maximize")
+theme.titlebar_maximized_button_focus_inactive  = theme.to_icon_path("titlebar/window-maximize")
+theme.titlebar_maximized_button_normal_active   = theme.to_icon_path("titlebar/window-minimize")
+theme.titlebar_maximized_button_focus_active    = theme.to_icon_path("titlebar/window-minimize")
 
 theme.wallpaper = theme_path .. "ibm-rainbow-wallpaper.png"
 
 -- You can use your own layout icons like this:
-theme.layout_fairh = theme_path .. "layouts/fairhw.png"
-theme.layout_fairv = theme_path .. "layouts/fairvw.png"
-theme.layout_floating = theme_path .. "layouts/floatingw.png"
-theme.layout_magnifier = theme_path .. "layouts/magnifierw.png"
-theme.layout_max = theme_path .. "layouts/maxw.png"
-theme.layout_fullscreen = theme_path .. "layouts/fullscreenw.png"
-theme.layout_tilebottom = theme_path .. "layouts/tilebottomw.png"
-theme.layout_tileleft = theme_path .. "layouts/tileleftw.png"
-theme.layout_tile = theme_path .. "layouts/tilew.png"
-theme.layout_tiletop = theme_path .. "layouts/tiletopw.png"
-theme.layout_spiral = theme_path .. "layouts/spiralw.png"
-theme.layout_dwindle = theme_path .. "layouts/dwindlew.png"
-theme.layout_cornernw = theme_path .. "layouts/cornernww.png"
-theme.layout_cornerne = theme_path .. "layouts/cornernew.png"
-theme.layout_cornersw = theme_path .. "layouts/cornersww.png"
-theme.layout_cornerse = theme_path .. "layouts/cornersew.png"
+-- theme.layout_fairh = theme_path .. "layouts/fairhw.png"
+-- theme.layout_fairv = theme_path .. "layouts/fairvw.png"
+-- theme.layout_floating = theme_path .. "layouts/floatingw.png"
+-- theme.layout_magnifier = theme_path .. "layouts/magnifierw.png"
+-- theme.layout_max = theme_path .. "layouts/maxw.png"
+-- theme.layout_fullscreen = theme_path .. "layouts/fullscreenw.png"
+-- theme.layout_tilebottom = theme_path .. "layouts/tilebottomw.png"
+-- theme.layout_tileleft = theme_path .. "layouts/tileleftw.png"
+-- theme.layout_tile = theme_path .. "layouts/tilew.png"
+-- theme.layout_tiletop = theme_path .. "layouts/tiletopw.png"
+-- theme.layout_spiral = theme_path .. "layouts/spiralw.png"
+-- theme.layout_dwindle = theme_path .. "layouts/dwindlew.png"
+-- theme.layout_cornernw = theme_path .. "layouts/cornernww.png"
+-- theme.layout_cornerne = theme_path .. "layouts/cornernew.png"
+-- theme.layout_cornersw = theme_path .. "layouts/cornersww.png"
+-- theme.layout_cornerse = theme_path .. "layouts/cornersew.png"
 
 -- Generate Awesome icon:
 theme.awesome_icon = theme_assets.awesome_icon(theme.menu_height, theme.bg_focus, theme.fg_focus)
