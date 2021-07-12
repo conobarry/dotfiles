@@ -1,177 +1,130 @@
-
--- Awesome modules
-local awesome = _G.awesome
-local wibox = require("wibox")
-local beautiful = require("beautiful")
+-- Awesome libraries
 local awful = require("awful")
+local beautiful = require("beautiful")
+local wibox = require("wibox")
 
-local inspect = require("lua_modules.inspect")
-local media_controller = require("controllers.media_controller")
+local capacity_command = 'bash -c "cat /sys/class/power_supply/BAT0/capacity"'
+local status_command = 'bash -c "cat /sys/class/power_supply/BAT0/status"'
+local command = 'bash -c "echo $(cat /sys/class/power_supply/BAT0/capacity) $(cat /sys/class/power_supply/BAT0/status)"'
 
-local markup = require("utils.pango_markup")
+local function to_icon_path(filename)
+  return beautiful.to_icon_path("bar/battery-" .. filename)
+end
 
 local battery = {
-  change_value = media_controller.default_volume_change,
-  max_level = 150, -- Keep to max 150 if using pulsemixer
-  bg_normal = beautiful.bar.bg_normal,
-  fg_normal = beautiful.bar.fg_normal,
-  font = beautiful.bar.font,
-  level = 0,
-  is_muted = false
+  empty_value = 5,
+  caution_value = 20,
+  low_value = 40,
+  medium_value = 60,
+  high_value = 80,
+  full_value = 100,
 }
 
-local command = 'bash -c "cat /sys/class/power_supply/BAT0/capacity"'
+battery.icons = {
+  empty = to_icon_path("empty"),
+  caution = to_icon_path("caution"),
+  low = to_icon_path("low"),
+  medium = to_icon_path("medium"),
+  high = to_icon_path("high"),
+  full = to_icon_path("full"),
+  empty_charging = to_icon_path("empty-charging"),
+  caution_charging = to_icon_path("caution-charging"),
+  low_charging = to_icon_path("low-charging"),
+  medium_charging = to_icon_path("medium-charging"),
+  high_charging = to_icon_path("high-charging"),
+  full_charging = to_icon_path("full-charging"),
+  missing = to_icon_path("missing"),
+}
 
-battery.watch = awful.widget.watch(command, 2,
+-- battery.textbox = wibox.widget {
+--   widget = wibox.widget.textbox,
+--   visible = false
+-- }
+
+battery.imagebox = wibox.widget {
+  widget = wibox.widget.imagebox,
+  image = battery.icons.full,
+  visible = true
+}
+
+battery.watch = awful.widget.watch(command, 1,
   function(widget, stdout)
-    widget.markup = string.format("<span font='%s' foreground='%s'>%3d%%</span>", beautiful.bar.font, beautiful.bar.fg_black, stdout)
+    
+    local capacity, status = stdout:match("(%d+)%s+(%w+)")
+    capacity = tonumber(capacity)
+      
+    local icon_name = ""
+    
+    if (capacity <= battery.empty_value) then
+      icon_name = "empty"
+    elseif (capacity <= battery.caution_value) then
+      icon_name = "caution"
+    elseif (capacity <= battery.low_value) then
+      icon_name = "low"
+    elseif (capacity <= battery.medium_value) then
+      icon_name = "medium"
+    elseif (capacity <= battery.high_value) then
+      icon_name = "high"
+    else
+      icon_name = "full"
+    end
+    
+    if (status == "Charging") then
+      icon_name = icon_name .. "_charging"
+    elseif (status == "Discharging") then
+    elseif (status == "Full") then
+      icon_name = "full_charging"
+      capacity = 100
+    else
+      -- icon_name = "missing"
+    end
+    
+    widget.markup = string.format("<span font='%s' foreground='%s'>%d%%</span>", beautiful.bar.font, beautiful.bar.fg_black, capacity)
+    
+    battery.imagebox.image = battery.icons[icon_name]
   end
 )
 
-local function to_icon_path(filename)
-  return os.getenv('HOME') .. "/.config/awesome/bar_widgets/battery/" .. filename .. ".png"
-end
+battery.watch.visible = false
 
-battery.icons = {
-  low    = to_icon_path("audio-volume-low"),
-  medium = to_icon_path("audio-volume-medium"),
-  high   = to_icon_path("audio-volume-high"),
-  muted  = to_icon_path("audio-volume-muted")
-}
-
-function battery:update_values()
-
-  -- print(tostring(self.is_muted) .. " " .. tostring(self.level))
-  
-  self.markup.text = self.is_muted and "M" or self.level .. "%"
-  self.textbox.markup = self.markup:generate()
-
-  local image = self.icons.muted
-
-  if self.is_muted then image = self.icons.muted
-  elseif self.level < 33 then image = self.icons.low
-  elseif self.level < 66 then image = self.icons.medium
-  else image = self.icons.high end
-
-  self.imagebox.image = image
-
-end
-
-
-function battery:new(args)
-
-  args = args or {}
-
-  local _battery = {}
-  setmetatable(_battery, self)
-  self.__index = self
-
-  _battery.markup = markup({
-    text = "",
-    foreground = _battery.fg_normal,
-    font_desc = _battery.font
-  })
-
-  _battery.background = wibox.widget {
-    widget = wibox.container.background,
-    bg = _battery.bg_normal,
-  }
-
-  _battery.textbox = wibox.widget {
-    widget = wibox.widget.textbox,
-    visible = false
-  }
-
-  _battery.imagebox = wibox.widget {
-    widget = wibox.widget.imagebox,
-    image = self.icons.high,
-    visible = true
-  }
-
-  _battery.widget = wibox.widget {
-    widget = _battery.background,
+battery.widget = wibox.widget {
+  -- widget = battery.background,
+  -- {
+    widget = wibox.container.margin,
+    left = beautiful.bar.widget_padding,
+    right = beautiful.bar.widget_padding,
     {
-      widget = wibox.container.margin,
-      left = beautiful.bar.widget_padding,
-      right = beautiful.bar.widget_padding,
-      {
-        layout = wibox.layout.stack,
+      layout = wibox.layout.stack,
+      -- {
+        -- widget = wibox.container.margin,
+        -- margins = beautiful.dpi(2),
         {
-          widget = wibox.container.margin,
-          margins = beautiful.dpi(2),
-          {
-            widget = _battery.imagebox,
-          }
+          widget = battery.imagebox,
         },
-        {
-          widget = _battery.textbox,
-        }
+      -- },
+      {
+        widget = battery.watch,
       }
     }
   }
+-- }
 
-  _battery.widget:connect_signal("mouse::enter",
-    function(widget)
-      media_controller.fetch_volume_levels()
-      _battery.imagebox.visible = false
-      _battery.textbox.markup = _battery.markup:generate()
-      _battery.textbox.visible = true
-      _battery.background.bg = _battery.bg_focus
-    end
-  )
-
-  _battery.widget:connect_signal("mouse::leave",
-    function()
-      -- _volume:fetch_levels()
-      _battery.imagebox.visible = true
-      _battery.textbox.visible = false
-      _battery.background.bg = _battery.bg_normal
-    end
-  )
-
-  _battery.widget:connect_signal("button::press",
-    function(_, _, _, button)
-      if (button == 4) then
-        print("scroll up")
-        -- _volume:raise_volume()
-        media_controller.raise_volume(self.change_value)
-        -- awesome.emit_signal("media::vol_up")
-      elseif (button == 5) then
-        print("scroll down")
-        -- _volume:lower_volume()
-        media_controller.lower_volume(self.change_value)
-        -- awesome.emit_signal("media::vol_down")
-      elseif (button == 2) then
-        -- _volume:toggle_mute()
-        media_controller.toggle_mute()
-      end
-      _battery:update_values()
-    end
-  )
-
-  awesome.connect_signal("update_volume_widgets",
-    function(values)
-
-      -- print("updating volume widget")
-      -- print("new values are: " .. inspect(values, {depth = 2}))
-
-      if values.level then _battery.level = tonumber(values.level) end
-      if values.is_muted ~= nil then _battery.is_muted = values.is_muted end
-
-      _battery:update_values()
-    end
-  )
-
-  media_controller.fetch_volume_levels()
-
-  return _battery.widget
-
-end
-
--- volume.widget:update()
-
-return setmetatable(battery,
-  {
-    __call = function(_, ...) return battery:new(...) end
-  }
+battery.widget:connect_signal("mouse::enter",
+  function(widget)
+    battery.imagebox.visible = false
+    -- battery.textbox.markup = battery.markup:generate()
+    battery.watch.visible = true
+    -- battery.background.bg = battery.bg_focus
+  end
 )
+
+battery.widget:connect_signal("mouse::leave",
+  function()
+    -- _volume:fetch_levels()
+    battery.imagebox.visible = true
+    battery.watch.visible = false
+    -- battery.background.bg = battery.bg_normal
+  end
+)
+
+return battery.widget

@@ -17,6 +17,7 @@ local wibarutils = require("utils.wibar")
 local taglist = require("bar_widgets.taglist")
 local sensors = require("bar_widgets.sensors")
 local volume = require("bar_widgets.volume.volume")
+local battery = require("bar_widgets.battery.battery")
 local date = require("bar_widgets.date")
 local time = require("bar_widgets.time")
 local systray = require("bar_widgets.systray")
@@ -242,8 +243,9 @@ awful.screen.connect_for_each_screen(
             spacing = beautiful.bar.spacing,
             sensors,
             --test,
-            vpn,
+            -- vpn,
             -- redshift,
+            battery,
             volume {},
             date,
             time,
