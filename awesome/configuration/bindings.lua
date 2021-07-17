@@ -192,7 +192,7 @@ bindings.keyboard = {
       {description = "jump to urgent client", group = "client"}
     ),
     awful.key({ modkey }, "Tab",
-      function() awful.spawn("rofi -show window") end,
+      function() awful.spawn("rofi -show-icons -show window") end,
       -- function()
       --   awful.client.focus.history.previous()
       --   if client.focus then
