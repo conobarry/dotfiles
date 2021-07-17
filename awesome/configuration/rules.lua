@@ -93,6 +93,7 @@ local rules = {
         -- "Godot_Engine",
         "Godot_Editor",
         "kitty",
+        "VirtualBox Machine"
       },
       class = {
         "firefox",
@@ -116,7 +117,8 @@ local rules = {
         "dolphin", -- Dolphin file manager
         -- Terminator when called with a set geometry
         "terminator --geometry",
-        "qemu" -- Machine emulator
+        "qemu", -- Machine emulator
+        "kitty-floating",
       },
       class = {
         "Arandr",
