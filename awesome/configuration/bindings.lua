@@ -219,7 +219,7 @@ bindings.keyboard = {
     ),
     awful.key({ modkey, "Shift" }, "Return",
       function()
-        local c = awful.spawn("kitty", {
+        local c = awful.spawn("kitty --name=kitty-floating", {
           floating = true,
           placement = awful.placement.centered,
           -- width = dpi(1000),
@@ -242,17 +242,6 @@ bindings.keyboard = {
       end,
       {description = "run prompt", group = "launch"}
     ),
-    -- awful.key({ modkey }, "x",
-    --   function()
-    --     awful.prompt.run {
-    --       prompt = "Run Lua code: ",
-    --       textbox = awful.screen.focused().mypromptbox.widget,
-    --       exe_callback = awful.util.eval,
-    --       history_path = awful.util.get_cache_dir() .. "/history_eval"
-    --     }
-    --   end,
-    --   {description = "lua execute prompt", group = "launch"}
-    -- ),
     awful.key({ modkey }, "space",
       function() awful.spawn("rofi -show run") end,
       {description = "run rofi", group = "launch"}
@@ -264,6 +253,10 @@ bindings.keyboard = {
     awful.key({ modkey }, "b",
       function() awful.spawn.with_shell(global.browser) end,
       {description = "web browser", group = "launch"}
+    ),
+    awful.key({ "Control", "Shift" }, "Escape",
+      function() awful.spawn.with_shell("ksysguard") end,
+      {description = "task manager", group = "launch"}
     ),
 
     -- Layout    
@@ -459,12 +452,14 @@ for i = 1, 9 do
         local from = client.focus and client.focus.first_tag or nil
         local to = {}
 
-        for s in _G.screen do
-          local tag = awful.tag.find_by_name(s, tostring(i))
+        local screen = awful.screen.focused()
+
+        -- for s in _G.screen do
+          local tag = awful.tag.find_by_name(screen, tostring(i))
           if tag then
             to = tag
           end
-        end
+        -- end
 
         if to then
             local other_clients = to:clients()
@@ -487,12 +482,15 @@ for i = 1, 9 do
         --     client.focus:move_to_tag(tag)
         --   end
         -- end
-        for s in _G.screen do
-          local tag = awful.tag.find_by_name(s, tostring(i))
+
+        local screen = awful.screen.focused()
+
+        -- for s in _G.screen do
+          local tag = awful.tag.find_by_name(screen, tostring(i))
           if tag then
             client.focus:move_to_tag(tag)
           end
-        end
+        -- end
       end,
       {description = "move focused client to tag #" .. i, group = "tag"}
     ),
