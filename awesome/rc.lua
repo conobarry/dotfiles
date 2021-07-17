@@ -171,12 +171,12 @@ client.connect_signal(
   end
 )
 
-client.connect_signal(
-  "property::maximized",
-  function(c)
-    c.maximized = false
-  end
-)
+-- client.connect_signal(
+--   "property::maximized",
+--   function(c)
+--     c.maximized = false
+--   end
+-- )
 
 
 -- client.connect_signal("manage",
