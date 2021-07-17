@@ -29,6 +29,7 @@ local function titlebar(client)
   local ontop_button = awful.titlebar.widget.ontopbutton(client)
   local floating_button = awful.titlebar.widget.floatingbutton(client)
   
+  local handle = wibox.widget {}
   
   local minimize_button = titlebar_button {
     tooltip = "minimize",
@@ -57,6 +58,7 @@ local function titlebar(client)
   maximize_button:connect_signal("button::press",
     function(titlebar, _, _, button)
       if (button == 1) then
+        client.floating = true
         client.maximized = true
       end
     end
@@ -68,19 +70,26 @@ local function titlebar(client)
     bg_focus = beautiful.titlebar.restore_button.bg_focus,
     icon_normal = beautiful.titlebar.restore_button.icon_normal,
     icon_focus = beautiful.titlebar.restore_button.icon_focus,
-  }
-  
-  local max_restore_button = client.maximized and restore_button or maximize_button
-
+  } 
   
   restore_button:connect_signal("button::press",
     function(titlebar, _, _, button)
       if (button == 1) then
-        client.maximized = false
+        print("restore")
+        client.floating = false
+        awful.client.floating.toggle(client)
       end
     end
   )
-  
+
+  local max_restore_button = wibox.widget {}
+
+  function max_restore_button:update()
+    self.widget = client.maximized and restore_button or maximize_button
+  end
+
+  max_restore_button:update()
+
   local close_button = titlebar_button {
     tooltip = "close",
     bg_normal = beautiful.titlebar.close_button.bg_normal,
@@ -95,9 +104,11 @@ local function titlebar(client)
         client:kill()
       end
     end
-  )
-  
-  
+  ) 
+
+  function titlebar_widget:update()
+    max_restore_button:update()
+  end
 
   -- Setup titlebar widget
   titlebar_widget:setup {
@@ -117,6 +128,7 @@ local function titlebar(client)
       {
         -- Middle
         widget = wibox.container.margin,
+        handle,
         --buttons = bindings.titlebar_mouse,
         -- left = beautiful.dpi(8),
         -- right = beautiful.dpi(8),
@@ -142,7 +154,7 @@ local function titlebar(client)
         -- Right
         layout = wibox.layout.fixed.horizontal(),
         minimize_button,
-        max_restore_button,
+        max_restore_button.widget,
         close_button,
         -- maximize_button2,
       }
@@ -186,39 +198,31 @@ local function titlebar(client)
 
   titlebar_widget:connect_signal("button::press",
     function(titlebar, _, _, button)
-      print(inspect(titlebar, {depth = 1}))
-      if (button == 1) then  
-        client:emit_signal("request::activate", "titlebar", {raise = true})
-        awful.mouse.client.move(client)
-      elseif (button == 3) then
+      -- print(inspect(titlebar, {depth = 1}))
+      if (button == 3) then
         titlebar_menu:toggle()
       end
     end
   )
 
-  -- close_button:connect_signal("button::press",
-  --   function(_, _, _, button)
-  --     if (button == 1) then
-  --       client:kill()
-  --     end
-  --   end
-  -- )
-
-  -- close_button:connect_signal("mouse::enter",
-  --   function()
-  --   end
-  -- )
+  handle:connect_signal("button::press",
+    function(titlebar, _, _, button)
+      if (button == 1) then  
+        client:emit_signal("request::activate", "titlebar", {raise = true})
+        awful.mouse.client.move(client)
+      end
+    end
+  )
+  
+  -- Calls whenever a client changes size or anything like that
+  client:connect_signal("request::geometry", function(c, context, ...)
+    titlebar_widget:update()
+  end)
 
   return titlebar_widget
 
 end
 
--- titlebar:connect_signal("button::press",
---   function(_, _, _, button)
---     if (button == 3) then
---       date_menu:toggle()
---     end
---   end
--- )
+
 
 return titlebar
