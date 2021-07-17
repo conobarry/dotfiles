@@ -16,6 +16,7 @@ local wibarutils = require("utils.wibar")
 -- Widgets
 local taglist = require("bar_widgets.taglist")
 local sensors = require("bar_widgets.sensors")
+local network = require("bar_widgets.network.network")
 local volume = require("bar_widgets.volume.volume")
 local date = require("bar_widgets.date")
 local time = require("bar_widgets.time")
@@ -150,7 +151,8 @@ awful.screen.connect_for_each_screen(
     --         --     widget = wibox.widget.imagebox,
     --         --     id = "icon_role"
     --         --   }
-    --         -- },
+    --         -- },-- local command = 'bash -c "echo $(cat /sys/class/power_supply/BAT0/capacity) $(cat /sys/class/power_supply/BAT0/status)"'
+
     --         {
     --           widget = wibox.widget.textbox,
     --           forced_width = dpi(400),
@@ -244,6 +246,7 @@ awful.screen.connect_for_each_screen(
             --test,
             vpn,
             -- redshift,
+            network,
             volume {},
             date,
             time,
