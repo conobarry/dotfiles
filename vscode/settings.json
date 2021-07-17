@@ -48,16 +48,21 @@
     "window.enableMenuBarMnemonics": false,
     "window.customMenuBarAltFocus": false,
     "window.menuBarVisibility": "hidden",
-    "workbench.editorAssociations": [
-        {
-            "viewType": "jupyter.notebook.ipynb",
-            "filenamePattern": "*.ipynb"
-        }
-    ],
-    "editor.trimAutoWhitespace": false,
+    "workbench.editorAssociations": {
+        "*.ipynb": "jupyter-notebook"
+    },
+    // "editor.trimAutoWhitespace": false,
     "workbench.editor.enablePreviewFromCodeNavigation": true,
     "debug.openDebug": "neverOpen",
     "window.restoreWindows": "none",
     "terminal.integrated.fontFamily": "RobotoMono Nerd Font",
-    "update.mode": "manual"
+    "update.mode": "manual",
+    "[json]": {
+        "editor.defaultFormatter": "HookyQR.beautify"
+    },
+    "diffEditor.ignoreTrimWhitespace": false,
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    }
 }
