@@ -15,7 +15,7 @@ local media_controller = {
   default_volume_change = 2,
 }
 
-media_controller.notification = naughty.notify({text = "hello"})
+-- media_controller.notification = naughty.notify({text = "hello"})
 
 --[[
   amixer commands are faster than pulsemixer, but rapidly running 'amixer set Master n%+'
