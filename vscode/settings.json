@@ -66,5 +66,6 @@
         "jupyter-notebook": "left"
     },
     "security.workspace.trust.untrustedFiles": "open",
-    "git.suggestSmartCommit": false
+    "git.suggestSmartCommit": false,
+    "git.confirmSync": false
 }
