@@ -170,11 +170,15 @@ local function titlebar(client)
     data = {
       client = client
     }
-  }
+  }  
   
   titlebar_widget:connect_signal("button::press",
-    function(_, _, _, button)
-      if (button == 3) then
+    function(titlebar, _, _, button)
+      -- print(inspect(titlebar, {depth = 1}))
+      if (button == 1) then  
+        client:emit_signal("request::activate", "titlebar", {raise = true})
+        awful.mouse.client.move(client)
+      elseif (button == 3) then
         titlebar_menu:toggle()
       end
     end
