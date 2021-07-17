@@ -64,5 +64,7 @@
     "notebook.cellToolbarLocation": {
         "default": "right",
         "jupyter-notebook": "left"
-    }
+    },
+    "security.workspace.trust.untrustedFiles": "open",
+    "git.suggestSmartCommit": false
 }
