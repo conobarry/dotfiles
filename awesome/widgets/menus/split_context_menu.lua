@@ -354,6 +354,12 @@ function menu:new(args)
   args = args or {}
 
   local items = args.items or {}
+  
+  if args.data then
+    for k, v in pairs(args.data) do
+      self.k = v
+    end
+  end
 
   local _menu = {
     parent = args.parent or nil,

@@ -5,6 +5,7 @@ local wibox = require("wibox")
 local protected_call = require("gears.protected_call")
 local inspect = require("lua_modules.inspect")
 local markup = require("utils.pango_markup")
+local awful = require("awful")
 
 local screen = _G.screen
 local mouse = _G.mouse
@@ -74,6 +75,30 @@ function menu_item:text_item(args)
       text_item.text_widget
     }
   }
+
+  if type(text_item.cmd) == "function" then
+    
+    text_item.widget:connect_signal("button::press",
+      function(_, _, _, button)
+        if (button == 1) then
+          text_item.cmd()
+        end
+      end
+    )
+    
+  else
+    
+    text_item.widget:connect_signal("button::press",
+      function(_, _, _, button)
+        if (button == 1) then
+          awful.spawn.easy_async_with_shell(text_item.cmd)
+        end
+      end
+    )
+    
+  end
+  
+  
 
   return text_item
 
@@ -166,7 +191,7 @@ function menu_item:new(parent_menu, args)
       end
     end
   end
-
+  
   _menu_item.parent_menu = parent_menu
 
   setmetatable(_menu_item, menu_item)
@@ -192,7 +217,8 @@ function menu_item:new(parent_menu, args)
     }
   }
 
-  -- print("is selectable: " .. tostring(_menu_item.is_selectable))
+  -- print("is selectable: " .. tostring(_menu_item.is_selectable)) 
+  
 
   if _menu_item.is_selectable then
 
