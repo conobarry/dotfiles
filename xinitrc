@@ -56,6 +56,9 @@ xbindkeys &
 # Music server
 mopidy &
 
+# Start playerctld daemon to watch for most recently used player
+playerctld daemon &
+
 # Mount google drive
 rclone mount gdrive: ~/usr/cloud/ --vfs-cache-mode full &
 
