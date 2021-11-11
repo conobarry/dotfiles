@@ -3,5 +3,6 @@
     "diffgutter": true,
     "scrollbar": true,
     "scrollspeed": 4,
+    "softwrap": true,
     "tabstospaces": true
 }
