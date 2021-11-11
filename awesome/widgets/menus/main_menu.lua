@@ -21,6 +21,7 @@ local menu_system = {
 }
 
 local menu_awesome = {
+  { "config", "code /home/conor/.config/awesome.code-workspace" },
   { "hotkeys",      function()
       hotkeys_popup.show_help(nil, awful.screen.focused())
     end },
@@ -42,6 +43,7 @@ local main_menu = menu({
     { "terminal", global.terminal },
     { "browser",  global.browser },
     { "files",    global.file_manager },
+    { "code", "code" },
     { type="separator" },
     { "system",   menu_system, beautiful.launcher_icon },
     { "awesome",  menu_awesome, beautiful.awesome_icon },
