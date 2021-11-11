@@ -29,6 +29,8 @@
 # The release modifier is not a standard X modifier, but you can
 # use it if you want to catch release events instead of press events
 
+# To reload xbindkeys config, use xbindkeys --poll-rc
+
 # By defaults, xbindkeys does not pay attention with the modifiers
 # NumLock, CapsLock and ScrollLock.
 # Uncomment the lines above if you want to pay attention to them.
@@ -44,6 +46,9 @@
 # Lock then sleep
 "sh ~/.config/i3lock/i3lock.sh && systemctl suspend"
     XF86Sleep
+
+"flameshot gui"
+    m:0x0 + c:107
 
 # Increase volume
 #"pulsemixer --change-volume +2 --max-volume 100"
