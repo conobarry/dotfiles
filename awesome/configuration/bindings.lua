@@ -258,6 +258,10 @@ bindings.keyboard = {
       function() awful.spawn.with_shell("ksysguard") end,
       {description = "task manager", group = "launch"}
     ),
+    awful.key({ }, "PrtSc",
+      function() print("print") end, --awful.spawn.with_shell("flameshot gui") end,
+      {description = "screenshot", group = "launch"}
+    ),
 
     -- Layout    
     awful.key({ modkey }, "l", 
