@@ -6,11 +6,13 @@ Each computer I own has its own dotfiles, with some overlap between them. Curren
 
 You are welcome to take a look at my configs and copy or use whatever you like.
 
-## main branch
+## Branches
+
+### main
 
 Dotfiles used on my desktop computer "apollo".
 
-## neptune branch
+### neptune
 
 Dotfiles used on my laptop "neptune".
 
