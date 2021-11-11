@@ -93,7 +93,9 @@ local rules = {
         -- "Godot_Engine",
         "Godot_Editor",
         "kitty",
-        "VirtualBox Machine"
+        "VirtualBox Machine",
+        "battlescribe",
+        "gimp",
       },
       class = {
         "firefox",
