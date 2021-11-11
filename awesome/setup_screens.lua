@@ -242,6 +242,7 @@ awful.screen.connect_for_each_screen(
             -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             spacing = beautiful.bar.spacing,
+            mytextclock,
             sensors,
             --test,
             vpn,
